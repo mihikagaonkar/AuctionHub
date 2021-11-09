@@ -20,14 +20,14 @@ load_dotenv(dotenv_path=path)
 
 def index(request):
     obj = AuctionListing.objects.filter(active=True)
-    return render(request, "AuctionHub/index.html", {
+    return render(request, "AuctionHub/auctions.html", {
         "objects": obj
     })
 
 
 def all(request):
     obj = AuctionListing.objects.all()
-    return render(request, "AuctionHub/index.html", {
+    return render(request, "AuctionHub/auctions.html", {
         "objects": obj
     })
 
@@ -148,7 +148,7 @@ def categories(request):
 def filter(request, name):
     category = Category.objects.get(name=name)
     obj = AuctionListing.objects.filter(category=category)
-    return render(request, "AuctionHub/index.html", {
+    return render(request, "AuctionHub/auctions.html", {
         "objects": obj
     })
 
@@ -233,6 +233,6 @@ def watchlist(request):
 def watch(request):
     user = request.user
     obj = user.watchlist.all()
-    return render(request, "AuctionHub/index.html", {
+    return render(request, "AuctionHub/auctions.html", {
         "objects": obj
     })
